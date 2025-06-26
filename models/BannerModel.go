@@ -1,8 +1,8 @@
 package models
 
 import (
-	"github.com/TruthHun/DocHub/helper"
 	"github.com/astaxie/beego/orm"
+	"github.com/jht385/DocHub/helper"
 )
 
 //横幅

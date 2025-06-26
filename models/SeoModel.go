@@ -11,9 +11,9 @@ import (
 
 	"fmt"
 
-	"github.com/TruthHun/DocHub/helper"
 	"github.com/TruthHun/gotil/sitemap"
 	"github.com/astaxie/beego/orm"
+	"github.com/jht385/DocHub/helper"
 )
 
 //SEO配置表

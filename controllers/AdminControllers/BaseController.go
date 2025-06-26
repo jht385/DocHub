@@ -3,14 +3,14 @@ package AdminControllers
 import (
 	"strings"
 
-	"github.com/TruthHun/DocHub/models"
+	"github.com/jht385/DocHub/models"
 
 	"time"
 
 	"fmt"
 
-	"github.com/TruthHun/DocHub/helper"
 	"github.com/astaxie/beego"
+	"github.com/jht385/DocHub/helper"
 )
 
 type BaseController struct {

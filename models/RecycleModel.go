@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/TruthHun/DocHub/helper"
+	"github.com/jht385/DocHub/helper"
 
 	"github.com/astaxie/beego/orm"
 )

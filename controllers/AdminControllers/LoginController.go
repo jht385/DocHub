@@ -5,9 +5,9 @@ import (
 
 	"time"
 
-	"github.com/TruthHun/DocHub/helper"
-	"github.com/TruthHun/DocHub/models"
 	"github.com/astaxie/beego/orm"
+	"github.com/jht385/DocHub/helper"
+	"github.com/jht385/DocHub/models"
 )
 
 type LoginController struct {

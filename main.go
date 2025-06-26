@@ -3,11 +3,11 @@ package main
 import (
 	"fmt"
 
-	"github.com/TruthHun/DocHub/controllers/HomeControllers"
-	"github.com/TruthHun/DocHub/helper"
-	"github.com/TruthHun/DocHub/models"
-	_ "github.com/TruthHun/DocHub/routers"
 	"github.com/astaxie/beego"
+	"github.com/jht385/DocHub/controllers/HomeControllers"
+	"github.com/jht385/DocHub/helper"
+	"github.com/jht385/DocHub/models"
+	_ "github.com/jht385/DocHub/routers"
 )
 
 //初始化函数

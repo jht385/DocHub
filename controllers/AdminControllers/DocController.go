@@ -7,10 +7,10 @@ import (
 
 	"strings"
 
-	"github.com/TruthHun/DocHub/helper"
-	"github.com/TruthHun/DocHub/helper/conv"
-	"github.com/TruthHun/DocHub/models"
 	"github.com/astaxie/beego/orm"
+	"github.com/jht385/DocHub/helper"
+	"github.com/jht385/DocHub/helper/conv"
+	"github.com/jht385/DocHub/models"
 )
 
 type DocController struct {

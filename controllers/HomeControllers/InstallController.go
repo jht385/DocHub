@@ -3,9 +3,9 @@ package HomeControllers
 import (
 	"strings"
 
-	"github.com/TruthHun/DocHub/helper"
-	"github.com/TruthHun/DocHub/models"
 	"github.com/astaxie/beego"
+	"github.com/jht385/DocHub/helper"
+	"github.com/jht385/DocHub/models"
 )
 
 type InstallController struct {

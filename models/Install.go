@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/TruthHun/DocHub/helper"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
+	"github.com/jht385/DocHub/helper"
 )
 
 func install() {
@@ -73,7 +73,7 @@ func installSys() {
 5:人身攻击
 6:骚扰他人`, //举报原因
 		Watermark:        "DocHub", //文档水印
-		StoreType:        string(StoreOss),
+		StoreType:        string(StoreMinio),
 		CheckRegEmail:    true,
 		AllowRepeatedDoc: false,
 	}

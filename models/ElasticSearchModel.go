@@ -13,11 +13,11 @@ import (
 
 	"fmt"
 
-	"github.com/TruthHun/DocHub/helper"
 	"github.com/TruthHun/gotil/util"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/httplib"
 	"github.com/astaxie/beego/orm"
+	"github.com/jht385/DocHub/helper"
 )
 
 //全文搜索客户端
