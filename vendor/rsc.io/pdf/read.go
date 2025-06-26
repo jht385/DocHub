@@ -696,7 +696,7 @@ func (v Value) Index(i int) Value {
 }
 
 // Len returns the length of the array v.
-// If v.Kind() != Array, Len returns a null Value.
+// If v.Kind() != Array, Len returns 0.
 func (v Value) Len() int {
 	x, ok := v.data.(array)
 	if !ok {
@@ -755,7 +755,7 @@ func (r *Reader) resolve(parent objptr, x interface{}) Value {
 			def, ok := obj.(objdef)
 			if !ok {
 				panic(fmt.Errorf("loading %v: found %T instead of objdef", ptr, obj))
-				return Value{}
+				//return Value{}
 			}
 			if def.ptr != ptr {
 				panic(fmt.Errorf("loading %v: found %v", ptr, def.ptr))
@@ -1052,7 +1052,7 @@ func decryptStream(key []byte, useAES bool, ptr objptr, rd io.Reader) io.Reader 
 		rd = &cbcReader{cbc: cbc, rd: rd, buf: make([]byte, 16)}
 	} else {
 		c, _ := rc4.NewCipher(key)
-		rd = &cipher.StreamReader{c, rd}
+		rd = &cipher.StreamReader{S: c, R: rd}
 	}
 	return rd
 }

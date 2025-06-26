@@ -29,8 +29,19 @@ func SegmentsToString(segs []Segment, searchMode bool) (output string) {
 }
 
 func tokenToString(token *Token) (output string) {
+	hasOnlyTerminalToken := true
 	for _, s := range token.segments {
-		output += tokenToString(s.token)
+		if len(s.token.segments) > 1 {
+			hasOnlyTerminalToken = false
+		}
+	}
+
+	if !hasOnlyTerminalToken {
+		for _, s := range token.segments {
+			if s != nil {
+				output += tokenToString(s.token)
+			}
+		}
 	}
 	output += fmt.Sprintf("%s/%s ", textSliceToString(token.text), token.pos)
 	return
@@ -60,8 +71,16 @@ func SegmentsToSlice(segs []Segment, searchMode bool) (output []string) {
 }
 
 func tokenToSlice(token *Token) (output []string) {
+	hasOnlyTerminalToken := true
 	for _, s := range token.segments {
-		output = append(output, tokenToSlice(s.token)...)
+		if len(s.token.segments) > 1 {
+			hasOnlyTerminalToken = false
+		}
+	}
+	if !hasOnlyTerminalToken {
+		for _, s := range token.segments {
+			output = append(output, tokenToSlice(s.token)...)
+		}
 	}
 	output = append(output, textSliceToString(token.text))
 	return output
@@ -69,11 +88,35 @@ func tokenToSlice(token *Token) (output []string) {
 
 // 将多个字元拼接一个字符串输出
 func textSliceToString(text []Text) string {
-	var output string
-	for _, word := range text {
-		output += string(word)
+	return Join(text)
+}
+
+func Join(a []Text) string {
+	switch len(a) {
+	case 0:
+		return ""
+	case 1:
+		return string(a[0])
+	case 2:
+		// Special case for common small values.
+		// Remove if golang.org/issue/6714 is fixed
+		return string(a[0]) + string(a[1])
+	case 3:
+		// Special case for common small values.
+		// Remove if golang.org/issue/6714 is fixed
+		return string(a[0]) + string(a[1]) + string(a[2])
 	}
-	return output
+	n := 0
+	for i := 0; i < len(a); i++ {
+		n += len(a[i])
+	}
+
+	b := make([]byte, n)
+	bp := copy(b, a[0])
+	for _, s := range a[1:] {
+		bp += copy(b[bp:], s)
+	}
+	return string(b)
 }
 
 // 返回多个字元的字节总长度

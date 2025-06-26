@@ -24,7 +24,7 @@ func main() {
 	// create a new cedar trie.
 	trie := cedar.New()
 
-	tools
+	// a helper function to print the id-key-value triple given trie node id
 	printIdKeyValue := func(id int) {
 		// the key of node `id`.
 		key, _ := trie.Key(id)
