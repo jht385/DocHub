@@ -3,12 +3,12 @@ package AdminControllers
 import (
 	"fmt"
 
-	"github.com/TruthHun/DocHub/helper"
+	"github.com/jht385/DocHub/helper"
 
 	"strings"
 
-	"github.com/TruthHun/DocHub/helper/conv"
-	"github.com/TruthHun/DocHub/models"
+	"github.com/jht385/DocHub/helper/conv"
+	"github.com/jht385/DocHub/models"
 )
 
 //IT文库注册会员管理
@@ -75,4 +75,22 @@ func (this *UserController) List() {
 	this.Data["ListRows"] = listRows
 	this.Data["TotalRows"] = totalRows
 	this.TplName = "list.html"
+}
+
+//会员注册[POST]
+func (this *UserController) Reg() {
+	// 注册
+	err, _ := models.NewUser().Reg(
+		this.GetString("email"),
+		this.GetString("username"),
+		this.GetString("password"),
+		this.GetString("repassword"),
+		this.GetString("intro"),
+	)
+	if err != nil {
+		this.ResponseJson(false, err.Error())
+	}
+
+	models.Regulate(models.GetTableSys(), "CntUser", 1, "Id=1") //站点用户数量增加
+	this.ResponseJson(true, "会员注册成功")
 }

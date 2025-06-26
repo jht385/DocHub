@@ -12,11 +12,11 @@ import (
 
 	"os"
 
-	"github.com/TruthHun/DocHub/helper"
-	"github.com/TruthHun/DocHub/helper/conv"
-	"github.com/TruthHun/DocHub/models"
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego/validation"
+	"github.com/jht385/DocHub/helper"
+	"github.com/jht385/DocHub/helper/conv"
+	"github.com/jht385/DocHub/models"
 )
 
 type UserController struct {
@@ -274,10 +274,12 @@ func (this *UserController) Login() {
 	}
 
 	this.ParseForm(&post)
-	valid := validation.Validation{}
-	res := valid.Email(post.Email, "Email")
-	if !res.Ok {
-		this.ResponseJson(false, "登录失败，邮箱格式不正确")
+	if this.Sys.CheckRegEmail { // 关闭邮箱验证时，登录名可能不是邮箱格式
+		valid := validation.Validation{}
+		res := valid.Email(post.Email, "Email")
+		if !res.Ok {
+			this.ResponseJson(false, "登录失败，邮箱格式不正确")
+		}
 	}
 
 	ModelUser := models.NewUser()

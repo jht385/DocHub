@@ -1,12 +1,12 @@
 package routers
 
 import (
-	"github.com/TruthHun/DocHub/controllers/AdminControllers"
+	"github.com/jht385/DocHub/controllers/AdminControllers"
 
-	"github.com/TruthHun/DocHub/controllers/HomeControllers"
-	"github.com/TruthHun/DocHub/helper"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
+	"github.com/jht385/DocHub/controllers/HomeControllers"
+	"github.com/jht385/DocHub/helper"
 )
 
 func init() {
@@ -73,6 +73,7 @@ func back() {
 	beego.Router("/admin/logout", &AdminControllers.LoginController{}, "get:Logout")
 	beego.Router("/admin/user", &AdminControllers.UserController{}, "get:List")
 	beego.Router("/admin/user/*", &AdminControllers.UserController{}, "get:List")
+	beego.Router("/admin/user/reg", &AdminControllers.UserController{}, "post:Reg")
 	beego.Router("/admin/doc", &AdminControllers.DocController{})
 	beego.Router("/admin/doc/cate", &AdminControllers.DocController{}, "get:Category")
 	beego.Router("/admin/doc/addcate", &AdminControllers.DocController{}, "post:AddCate")

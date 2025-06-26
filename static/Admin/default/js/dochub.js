@@ -370,7 +370,36 @@ $(function(){
 
     });
 
+    
+    $("#showAddUserBtn").click(function(){
+		$("#ModalUser").modal("show");
+	});
 
+	//会员注册
+	$(".btn-reg").click(function(){
+		var _this=$(this),form=_this.parents("form"),inputs=form.find("input[required=required]");
+		let flag = true;
+		$.each(inputs, function() {	
+			if($(this).val()==""){
+				$(this).focus();
+				wenku_alert("danger","该项不能为空",3000,"");
+				flag = false;
+				return false; // 这里返回才能focus到第一个为空的
+			}
+		});
+		
+		if(!flag){
+			return;
+		}
+		
+		$.post(form.attr("action"),form.serialize(),function(rt){
+			if (rt.status==1){
+				wenku_alert("success",rt.msg,3000,form.attr("data-redirect"));
+			}else{
+				wenku_alert("danger",rt.msg,3000,"");
+			}
+		});
+	});
 
 
 
