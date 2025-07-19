@@ -50,7 +50,7 @@ func (this *ListController) Get() {
 	}
 
 	if v, ok := params["p"]; ok { //页码处理
-		p = helper.NumberRange(helper.Interface2Int(v), 1, 100)
+		p = helper.NumberRange(helper.Interface2Int(v), 1, 999999)
 	}
 
 	orderBy := []string{"Sort", "Title"} //分类排序
